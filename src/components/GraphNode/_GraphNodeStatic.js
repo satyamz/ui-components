@@ -17,6 +17,7 @@ import ShapeCloud from './shapes/_ShapeCloud';
 import ShapeSheet from './shapes/_ShapeSheet';
 import ShapeCylinder from './shapes/_ShapeCylinder';
 import ShapeDottedCylinder from './shapes/_ShapeDottedCylinder';
+import ShapeCamera from './shapes/_ShapeCamera';
 
 export const nodeBaseSize = 55;
 export const shapes = {
@@ -31,6 +32,7 @@ export const shapes = {
   sheet: ShapeSheet,
   cylinder: ShapeCylinder,
   dottedcylinder: ShapeDottedCylinder,
+  camera: ShapeCamera,
 };
 
 const labelWidth = nodeBaseSize * 2.5;
