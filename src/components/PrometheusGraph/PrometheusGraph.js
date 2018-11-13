@@ -213,6 +213,8 @@ class PrometheusGraph extends React.PureComponent {
       hoverY: null,
       chartWidth: 0,
       chartHeight: 0,
+      timeScale: {},
+      valueScale: {},
     };
   }
 
@@ -351,18 +353,34 @@ class PrometheusGraph extends React.PureComponent {
       })),
     }));
 
-    this.setState({ multiSeries });
+    this.setState({ multiSeries }, () => {
+      // time and value scales use state.multiSeries so must be calculated after
+      // state.multiseries
+      this.prepareTimeAndValueScales(props);
+    });
   };
 
-  getMaxMinGraphValue() {
+  prepareTimeAndValueScales = props => {
+    const timeScale = this.getTimeScale(props);
+    const valueScale = this.getValueScale(props);
+
+    this.setState({
+      timeScale,
+      valueScale,
+    });
+  };
+
+  getMaxMinGraphValue(props) {
+    const visibleMultiSeries = this.getVisibleMultiSeries();
+
     const yPositions = flatten(
-      this.getVisibleMultiSeries().map(series =>
+      visibleMultiSeries.map(series =>
         series.datapoints.map(datapoint => datapoint.offset + datapoint.value)
       )
     );
 
     return {
-      max: max([this.props.valuesMinSpread * 1.05, ...yPositions]),
+      max: max([props.valuesMinSpread * 1.05, ...yPositions]),
       min: min([0, ...yPositions]),
     };
   }
@@ -388,20 +406,19 @@ class PrometheusGraph extends React.PureComponent {
       .range(timestampSecs);
   }
 
-  getTimeScale() {
+  getTimeScale(props) {
     const { chartWidth } = this.state;
-    const { startTimeSec, endTimeSec } = this.props;
+    const { startTimeSec, endTimeSec } = props;
     return scaleLinear()
       .domain([startTimeSec, endTimeSec])
       .range([0, chartWidth]);
   }
 
-  getValueScale() {
+  getValueScale(props) {
     const { chartHeight } = this.state;
-    const {
-      max: maxGraphValue,
-      min: minGraphValue,
-    } = this.getMaxMinGraphValue();
+    const { max: maxGraphValue, min: minGraphValue } = this.getMaxMinGraphValue(
+      props
+    );
     return scaleLinear()
       .domain([minGraphValue, maxGraphValue])
       .range([chartHeight, 0]);
@@ -442,10 +459,10 @@ class PrometheusGraph extends React.PureComponent {
       hoverX,
       hoverY,
       multiSeries,
+      valueScale,
+      timeScale,
     } = this.state;
 
-    const timeScale = this.getTimeScale();
-    const valueScale = this.getValueScale();
     const visibleMultiSeries = this.getVisibleMultiSeries();
     const timestampQuantizer = this.getTimestampQuantizer();
     const valueFormatter = valueFormatters[metricUnits];
