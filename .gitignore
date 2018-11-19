@@ -6,6 +6,4 @@
 .uptodate
 node_modules/
 build/
-dist/
-lib/
 *.log
