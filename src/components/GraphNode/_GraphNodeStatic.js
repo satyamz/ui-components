@@ -17,7 +17,9 @@ import ShapeCloud from './shapes/_ShapeCloud';
 import ShapeSheet from './shapes/_ShapeSheet';
 import ShapeCylinder from './shapes/_ShapeCylinder';
 import ShapeDottedCylinder from './shapes/_ShapeDottedCylinder';
-import ShapePool from './shapes/_ShapePool';
+import ShapeDottedSquare from './shapes/_ShapeDottedSquare';
+import ShapeController from './shapes/_ShapeController';
+import ShapeReplica from './shapes/_ShapeReplica';
 import TagCamera from './tags/_TagCamera';
 
 export const nodeBaseSize = 55;
@@ -33,7 +35,9 @@ export const shapes = {
   sheet: ShapeSheet,
   cylinder: ShapeCylinder,
   dottedcylinder: ShapeDottedCylinder,
-  pool: ShapePool,
+  dottedsquare: ShapeDottedSquare,
+  controller: ShapeController,
+  replica: ShapeReplica,
 };
 export const tags = {
   none: () => null,
