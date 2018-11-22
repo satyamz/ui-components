@@ -20,6 +20,7 @@ import ShapeDottedCylinder from './shapes/_ShapeDottedCylinder';
 import ShapeDottedSquare from './shapes/_ShapeDottedSquare';
 import ShapeController from './shapes/_ShapeController';
 import ShapeReplica from './shapes/_ShapeReplica';
+import ShapeRectangle from './shapes/_ShapeRectangle';
 import TagCamera from './tags/_TagCamera';
 
 export const nodeBaseSize = 55;
@@ -38,6 +39,7 @@ export const shapes = {
   dottedsquare: ShapeDottedSquare,
   controller: ShapeController,
   replica: ShapeReplica,
+  rectangle: ShapeRectangle,
 };
 export const tags = {
   none: () => null,
