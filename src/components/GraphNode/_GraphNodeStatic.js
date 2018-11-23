@@ -22,6 +22,11 @@ import ShapeController from './shapes/_ShapeController';
 import ShapeReplica from './shapes/_ShapeReplica';
 import ShapeRectangle from './shapes/_ShapeRectangle';
 import TagCamera from './tags/_TagCamera';
+import TagFailed from './tags/_TagFailed';
+import TagNotPermitted from './tags/_TagNotPermitted';
+import TagReload from './tags/_TagReload';
+import TagExclamation from './tags/_TagExclamation';
+import TagOffline from './tags/_TagOffline';
 
 export const nodeBaseSize = 55;
 export const shapes = {
@@ -44,6 +49,11 @@ export const shapes = {
 export const tags = {
   none: () => null,
   camera: TagCamera,
+  failed: TagFailed,
+  notpermitted: TagNotPermitted,
+  reload: TagReload,
+  degraded: TagExclamation,
+  offline: TagOffline,
 };
 
 const labelWidth = nodeBaseSize * 2.5;
