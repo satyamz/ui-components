@@ -58,6 +58,36 @@ export default class GraphNodeExample extends React.Component {
         label: 'dottedcylinder + camera',
         key: faker.lorem.slug(),
       },
+      {
+        tag: 'failed',
+        shape: 'controller',
+        label: 'controller + failed',
+        key: faker.lorem.slug(),
+      },
+      {
+        tag: 'notpermitted',
+        shape: 'controller',
+        label: 'controller + notpermitted',
+        key: faker.lorem.slug(),
+      },
+      {
+        tag: 'reload',
+        shape: 'controller',
+        label: 'controller + reload',
+        key: faker.lorem.slug(),
+      },
+      {
+        tag: 'degraded',
+        shape: 'controller',
+        label: 'controller + degraded',
+        key: faker.lorem.slug(),
+      },
+      {
+        tag: 'offline',
+        shape: 'controller',
+        label: 'controller + offline',
+        key: faker.lorem.slug(),
+      },
     ],
     stackedShape: nodeTypes.map(shape => ({
       shape,
